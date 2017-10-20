@@ -5,35 +5,35 @@
     <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="2dp" android:left="1dp" />
-            <corners android:radius="5dp" />
+            <corners android:radius="2dp" />
              />
         </shape>
     </item>
     <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="2dp" android:left="1dp" />
-            <corners android:radius="5dp" />
+            <corners android:radius="2dp" />
             />
         </shape>
     </item>
     <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="2dp" android:left="1dp" />
-            <corners android:radius="5dp" />
+            <corners android:radius="2dp" />
             />
         </shape>
     </item>
     <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="2dp" android:left="1dp" />
-            <corners android:radius="5dp" />
+            <corners android:radius="2dp" />
             />
         </shape>
     </item>
     <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="2dp" android:left="1dp" />
-            <corners android:radius="5dp" />
+            <corners android:radius="2dp" />
             />
         </shape>
     </item>

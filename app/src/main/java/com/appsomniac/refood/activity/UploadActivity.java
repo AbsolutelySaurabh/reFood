@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,13 +24,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.appsomniac.refood.R;
 import com.appsomniac.refood.base.MainActivity;
-import com.appsomniac.refood.dummy.Radapter;
+import com.appsomniac.refood.adapter.uploadActivity.Radapter;
+import com.appsomniac.refood.model.FoodPost;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -42,8 +47,16 @@ import java.util.List;
 public class UploadActivity extends AppCompatActivity {
 
     ArrayList<String> image_uris;
+    ArrayList<String> al_image_encoded;
     private RecyclerView rv;
     public Button add_more, post_btn;
+
+    //add Firebase Database stuff
+    private FirebaseDatabase mFirebaseDatabase;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference myRef;
+    private String userID;
 
     EditText editFoodType, editFoodQuantity, editUserName, editUserLocation, editUserContact, editFoodDescription;
     Spinner foodTypeSpinner;
@@ -65,6 +78,7 @@ public class UploadActivity extends AppCompatActivity {
         initializeViews();
 
         image_uris = getIntent().getStringArrayListExtra("image_uris");
+        al_image_encoded = getIntent().getStringArrayListExtra("al_image_encoded");
 
         if(image_uris.size()<=3) {
 
@@ -80,13 +94,49 @@ public class UploadActivity extends AppCompatActivity {
                 add_more.setEnabled(false);
             }
 
+
+        post_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(editFoodQuantity.getText().length()>=0 && editFoodType.getText().length()>=1 && editFoodDescription.getText().length()>=5
+                        && editUserLocation.getText().length()>=5 && editUserName.getText().length()>=2 && editUserContact.getText().length()>=7){
+
+                    postToDatabase();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+
+                }else {
+                    Toast.makeText(getApplicationContext(), "Complete Details first!", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
         my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
         my_recycler_view.setHasFixedSize(true);
         my_recycler_view.setNestedScrollingEnabled(true);
 
-        adapter = new Radapter(this, image_uris, "image_uris");
+        adapter = new Radapter(this, image_uris);
         my_recycler_view.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         my_recycler_view.setAdapter(adapter);
+
+    }
+
+    public void postToDatabase(){
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+        userID = user.getUid();
+
+        FoodPost post = new FoodPost(editFoodType.getText().toString(), editFoodQuantity.getText().toString(), editUserName.getText().toString()
+                , userID, editUserLocation.getText().toString(), editUserContact.getText().toString(), editFoodDescription.getText().toString()
+                , al_image_encoded);
+
+        myRef.child("users").child(userID).child("posts").push().setValue(post);
+        myRef.child("all_posts").push().setValue(post);
 
     }
 
@@ -201,6 +251,8 @@ public class UploadActivity extends AppCompatActivity {
                 Uri contentURI = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                    Log.e("Bitmap: ", String.valueOf(bitmap));
+
                     String path = saveImage(bitmap);
                     Toast.makeText(UploadActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
@@ -210,14 +262,19 @@ public class UploadActivity extends AppCompatActivity {
             }
         } else if (requestCode == CAMERA) {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            Log.e("Bitmap: ", String.valueOf(thumbnail));
             saveImage(thumbnail);
             Toast.makeText(UploadActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }
     }
 
     public String saveImage(Bitmap myBitmap) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
+
+        String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+        al_image_encoded.add(imageEncoded);
+
         File wallpaperDirectory = new File(
                 Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
         // have the object build the directory structure, if needed.
@@ -230,7 +287,7 @@ public class UploadActivity extends AppCompatActivity {
                     .getTimeInMillis() + ".jpg");
             f.createNewFile();
             FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
+            fo.write(baos.toByteArray());
             MediaScannerConnection.scanFile(this,
                     new String[]{f.getPath()},
                     new String[]{"image/jpeg"}, null);
@@ -253,6 +310,7 @@ public class UploadActivity extends AppCompatActivity {
     public void onBackPressed() {
         image_uris.clear();
         adapter.notifyDataSetChanged();
+        finish();
         super.onBackPressed();
         //finish();
     }

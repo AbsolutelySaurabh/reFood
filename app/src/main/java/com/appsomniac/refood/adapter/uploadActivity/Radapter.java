@@ -1,4 +1,4 @@
-package com.appsomniac.refood.dummy;
+package com.appsomniac.refood.adapter.uploadActivity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -16,13 +16,11 @@ public class Radapter extends RecyclerView.Adapter<RviewHolder> {
 
     public static ArrayList<String> image_uris;
     public Context context;
-    public static String movieORtv;
 
-    public Radapter(Context context, ArrayList<String> image_uris, String movieORtv) {
+    public Radapter(Context context, ArrayList<String> image_uris) {
 
         this.context = context;
         this.image_uris = image_uris;
-        this.movieORtv = movieORtv;
     }
 
     @Override

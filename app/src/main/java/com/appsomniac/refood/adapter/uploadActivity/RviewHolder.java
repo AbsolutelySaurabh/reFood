@@ -1,4 +1,4 @@
-package com.appsomniac.refood.dummy;
+package com.appsomniac.refood.adapter.uploadActivity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -35,4 +35,6 @@ public class RviewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
+
+
 }

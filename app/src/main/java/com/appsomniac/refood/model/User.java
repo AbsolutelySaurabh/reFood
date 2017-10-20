@@ -9,6 +9,7 @@ public class User {
     private String email;
     private String contactNo;
     private String avatarUrl;
+    //private FoodPost posts;
 
     public User(String name, String email, String contact, String avatarUrl){
 
@@ -16,6 +17,7 @@ public class User {
         this.email = email;
         this.contactNo = contact;
         this.avatarUrl = avatarUrl;
+        //this.posts = posts;
     }
 
     public User(){
@@ -37,6 +39,10 @@ public class User {
     public String getAvatarUrl(){
         return avatarUrl;
     }
+//
+//    public FoodPost getFoodPosts(){
+//        return posts;
+//    }
 
     public void setContactNo(String contactNo){
         this.contactNo = contactNo;

@@ -244,6 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:hint="Your Contact Number"
+                    android:inputType="number"
                     android:layout_marginLeft="10dp"
                     android:textColorHighlight="@color/dark_green"
                     android:textColorLink="@color/dark_green"
@@ -337,7 +338,6 @@
 
 
         <Button
-            android:enabled="false"
             android:id="@+id/button_post"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
