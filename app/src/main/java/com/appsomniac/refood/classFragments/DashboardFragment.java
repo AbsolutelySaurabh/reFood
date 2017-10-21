@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.appsomniac.refood.R;
@@ -55,6 +56,7 @@ public class DashboardFragment extends Fragment {
     RecyclerView my_recycler_view;
     private Button btn;
     private ImageView imageview;
+    ProgressBar progressBar;
 
     //add Firebase Database stuff
     private FirebaseDatabase mFirebaseDatabase;
@@ -78,7 +80,6 @@ public class DashboardFragment extends Fragment {
     };
 
     public DashboardFragment() {
-
         //empty constructor
     }
 
@@ -95,6 +96,8 @@ public class DashboardFragment extends Fragment {
         fab_camera = getParentFragment().getView().findViewById(R.id.fab);
         image_uris=new ArrayList<String>();
         al_image_encoded = new ArrayList<>();
+        progressBar = dashboard_fragment.findViewById(R.id.dashboard_progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         getAllPostsFromDatabase();
         setListenersOnFab();
@@ -129,8 +132,10 @@ public class DashboardFragment extends Fragment {
                     adapter = new DashboardRadapter(getContext(), all_posts);
                     my_recycler_view.setLayoutManager(new GridLayoutManager(getContext(), 2));
                     my_recycler_view.setAdapter(adapter);
-                }
 
+                    progressBar.setVisibility(View.GONE);
+
+                }
             }
 
             @Override
@@ -148,7 +153,6 @@ public class DashboardFragment extends Fragment {
 
                 checkPermissions();
                 showPictureDialog();
-//              takePhotoFromCamera();
             }
         });
     }
@@ -180,29 +184,7 @@ public class DashboardFragment extends Fragment {
         }
     }
     private void showPictureDialog(){
-//        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getContext());
-//        pictureDialog.setTitle("Select Image Source:");
-//        String[] pictureDialogItems = {
-//                "Gallery",
-//                "Camera" };
-//        pictureDialog.setItems(pictureDialogItems,
-//                new DialogInterface.OnClickListener(){
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        switch (which) {
-//                            case 0:
-//                                choosePhotoFromGallary();
-//                                break;
-//                            case 1:
-//                                takePhotoFromCamera();
-//                                break;
-//                        }
-//                    }
-//                });
-//        pictureDialog.show();
-
         takePhotoFromCamera();
-
     }
 
     public void choosePhotoFromGallary() {
@@ -253,6 +235,8 @@ public class DashboardFragment extends Fragment {
             i.putStringArrayListExtra("image_uris", image_uris);
             i.putStringArrayListExtra("al_image_encoded", al_image_encoded);
             startActivity(i);
+
+            getActivity().finish();
 
         }
     }

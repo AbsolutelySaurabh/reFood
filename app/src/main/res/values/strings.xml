@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ReFood</string>
+    <string name="app_name">reFood</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -77,13 +77,13 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="title_activity_maps">Map</string>
 
-    <string name="food_type_prompt"/>Choose Food Type/string>
+    <string name="food_type_prompt" />Choose Food Type/string>
 
     <string-array name="food_type_array">
-            <item>Snacks</item>
-            <item>Meal</item>
-            <item>Liquid</item>
-            <item>Other</item>
+        <item>Snacks</item>
+        <item>Meal</item>
+        <item>Liquid</item>
+        <item>Other</item>
     </string-array>
 
 </resources>

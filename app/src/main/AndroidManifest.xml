@@ -38,9 +38,9 @@
         <activity
             android:name=".activity.UploadActivity"
             android:label="Upload Food"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity android:name=".activity.FullImageActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.FullImageActivity" />
+        <activity android:name=".activity.SingleItemActivity"></activity>
     </application>
 
 </manifest>

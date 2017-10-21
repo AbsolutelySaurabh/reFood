@@ -117,7 +117,7 @@ public class UploadActivity extends AppCompatActivity {
         my_recycler_view.setHasFixedSize(true);
         my_recycler_view.setNestedScrollingEnabled(true);
 
-        adapter = new Radapter(this, image_uris);
+        adapter = new Radapter(this, image_uris, "upload");
         my_recycler_view.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         my_recycler_view.setAdapter(adapter);
 
@@ -131,13 +131,19 @@ public class UploadActivity extends AppCompatActivity {
         FirebaseUser user = mFirebaseAuth.getCurrentUser();
         userID = user.getUid();
 
+        //no need to add the same the same posts to user structre as it can be related by all_posts using user_id.
+        //myRef.child("users").child(userID).child("posts").push().setValue(post);
+
+        //to get the same push() key, call push() only once;
+        DatabaseReference newRef = myRef.child("all_posts").push();
+
+        String refKey = newRef.getKey();
+
         FoodPost post = new FoodPost(editFoodType.getText().toString(), editFoodQuantity.getText().toString(), editUserName.getText().toString()
                 , userID, editUserLocation.getText().toString(), editUserContact.getText().toString(), editFoodDescription.getText().toString()
-                , al_image_encoded);
+                , al_image_encoded, refKey);
 
-        myRef.child("users").child(userID).child("posts").push().setValue(post);
-        myRef.child("all_posts").push().setValue(post);
-
+        newRef.setValue(post);
     }
 
     public void initializeViews(){
