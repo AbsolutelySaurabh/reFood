@@ -8,6 +8,10 @@
         android:id="@+id/dashboard_frag_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:paddingLeft="8dp"
+        android:scrollbars="vertical"
         />
 
     <ProgressBar

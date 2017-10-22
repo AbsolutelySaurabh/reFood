@@ -10,8 +10,8 @@
     >
 
     <LinearLayout
-        android:layout_width="160dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="210dp"
         android:orientation="vertical">
 
         <ImageView
@@ -19,9 +19,11 @@
             android:layout_height="match_parent"
             android:elevation="3dp"
             android:id="@+id/media_poster"
-            android:src="@drawable/fightclub"
-            android:scaleType="fitXY"
+            android:src="@color/colorPrimary"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             />
+
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

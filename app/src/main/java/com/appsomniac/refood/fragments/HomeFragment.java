@@ -95,7 +95,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         homeFragment = inflater.inflate(R.layout.fragment_home, container, false);
 
-        fab_camera = homeFragment.findViewById(R.id.fab);
+        fab_camera = getActivity().findViewById(R.id.fab);
 
         viewPager = (ViewPager)homeFragment.findViewById(R.id.viewpager);
         setupViewPager(viewPager);

@@ -41,6 +41,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.FullImageActivity" />
         <activity android:name=".activity.SingleItemActivity"></activity>
+
+        <service android:enabled="true" android:name="com.appsomniac.refood.service.FirebaseNotificationService" />
+
     </application>
 
 </manifest>

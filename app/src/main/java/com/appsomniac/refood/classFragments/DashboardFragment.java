@@ -17,11 +17,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,6 +54,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+
 public class DashboardFragment extends Fragment {
 
     View dashboard_fragment;
@@ -57,6 +65,8 @@ public class DashboardFragment extends Fragment {
     private Button btn;
     private ImageView imageview;
     ProgressBar progressBar;
+
+    LayoutAnimationController controller;
 
     //add Firebase Database stuff
     private FirebaseDatabase mFirebaseDatabase;
@@ -93,7 +103,9 @@ public class DashboardFragment extends Fragment {
 
         dashboard_fragment = inflater.inflate(R.layout.dashboard_layout, container, false);
 
-        fab_camera = getParentFragment().getView().findViewById(R.id.fab);
+        checkPermissions();
+
+        fab_camera = getActivity().findViewById(R.id.fab);
         image_uris=new ArrayList<String>();
         al_image_encoded = new ArrayList<>();
         progressBar = dashboard_fragment.findViewById(R.id.dashboard_progressBar);
@@ -129,11 +141,14 @@ public class DashboardFragment extends Fragment {
                     my_recycler_view.setNestedScrollingEnabled(true);
 
                     //need to get the arrayList of the post POJOs.
-                    adapter = new DashboardRadapter(getContext(), all_posts);
+                    adapter = new DashboardRadapter(getContext(), all_posts, my_recycler_view);
                     my_recycler_view.setLayoutManager(new GridLayoutManager(getContext(), 2));
-                    my_recycler_view.setAdapter(adapter);
 
+                    my_recycler_view.setAdapter(adapter);
                     progressBar.setVisibility(View.GONE);
+
+                    //This methos is for FADEin FADEout animation of each card
+                    setAnimationAndAdapter();
 
                 }
             }
@@ -143,6 +158,28 @@ public class DashboardFragment extends Fragment {
 
             }
         });
+
+    }
+
+    public void setAnimationAndAdapter(){
+
+        //Animation to recyclerView
+//        AnimationSet set = new AnimationSet(true);
+//        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+//        animation.setDuration(500);
+//        set.addAnimation(animation);
+//
+//        animation = new TranslateAnimation(
+//                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+//                Animation.RELATIVE_TO_SELF, -1.0f, Animation.RELATIVE_TO_SELF, 0.0f
+//        );
+//        animation.setDuration(100);
+//        set.addAnimation(animation);
+
+//        controller = new LayoutAnimationController(set, 0.5f);
+//        my_recycler_view.setAdapter(adapter);
+//        my_recycler_view.setLayoutAnimation(controller);
+//        progressBar.setVisibility(View.GONE);
 
     }
 

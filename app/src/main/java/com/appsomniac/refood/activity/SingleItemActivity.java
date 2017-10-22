@@ -106,4 +106,11 @@ public class SingleItemActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "You can't delete this item", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+        super.onBackPressed();
+    }
 }

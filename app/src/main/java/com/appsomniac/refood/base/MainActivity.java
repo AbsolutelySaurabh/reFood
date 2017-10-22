@@ -26,6 +26,8 @@ import com.appsomniac.refood.R;
 import com.appsomniac.refood.activity.LoginActivity;
 import com.appsomniac.refood.fragments.HomeFragment;
 import com.appsomniac.refood.fragments.ProfileFragment;
+import com.appsomniac.refood.service.FirebaseNotificationService;
+import com.appsomniac.refood.service.UpdaterServiceManager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private String mUsername;
+
+    FloatingActionButton fab_camera;
     NavigationView nav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         } else {
             mUsername = mFirebaseUser.getDisplayName();
+            startService(new Intent(getBaseContext(), FirebaseNotificationService.class));
         }
 
         // initialize the views
@@ -115,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        fab_camera = (FloatingActionButton) findViewById(R.id.fab);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -132,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            finish();
             super.onBackPressed();
         }
     }
@@ -171,15 +179,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_dashboard) {
 
             fragment = new HomeFragment();
+            fab_camera.show();
 
         } else if (id == R.id.nav_profile) {
             fragment = new ProfileFragment();
+            fab_camera.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_settings) {
 
+            fab_camera.setVisibility(View.GONE);
+
         } else if (id == R.id.nav_coins) {
 
+            fab_camera.setVisibility(View.GONE);
+
         } else if (id == R.id.nav_refer_and_earn) {
+
+            fab_camera.setVisibility(View.GONE);
 
         }
 

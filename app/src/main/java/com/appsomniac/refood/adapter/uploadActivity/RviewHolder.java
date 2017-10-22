@@ -1,7 +1,12 @@
 package com.appsomniac.refood.adapter.uploadActivity;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.transition.ChangeBounds;
+import android.support.transition.TransitionManager;
+import android.support.transition.TransitionSet;
 import android.support.v7.widget.RecyclerView;
+import android.transition.ChangeImageTransform;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +16,8 @@ import android.widget.TextView;
 import com.appsomniac.refood.R;
 
 import java.util.ArrayList;
+
+import static android.support.design.R.attr.expanded;
 
 public class RviewHolder extends RecyclerView.ViewHolder {
 
@@ -27,10 +34,6 @@ public class RviewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-
-//                ModelBase64.base64Image=image_uris.get(getAdapterPosition());
-//                Intent intent = new Intent(mContext, FullImageActivity.class);
-//                mContext.startActivity(intent);
 
             }
         });

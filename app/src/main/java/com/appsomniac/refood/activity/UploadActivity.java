@@ -2,6 +2,7 @@ package com.appsomniac.refood.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
@@ -58,7 +59,7 @@ public class UploadActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private String userID;
 
-    EditText editFoodType, editFoodQuantity, editUserName, editUserLocation, editUserContact, editFoodDescription;
+    EditText editFoodType, editFoodQuantity, editUserLocation, editUserContact, editFoodDescription;
     Spinner foodTypeSpinner;
     Radapter adapter;
     RecyclerView my_recycler_view;
@@ -100,7 +101,7 @@ public class UploadActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(editFoodQuantity.getText().length()>=0 && editFoodType.getText().length()>=1 && editFoodDescription.getText().length()>=5
-                        && editUserLocation.getText().length()>=5 && editUserName.getText().length()>=2 && editUserContact.getText().length()>=7){
+                        && editUserLocation.getText().length()>=5 && editUserContact.getText().length()>=7){
 
                     postToDatabase();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -139,7 +140,10 @@ public class UploadActivity extends AppCompatActivity {
 
         String refKey = newRef.getKey();
 
-        FoodPost post = new FoodPost(editFoodType.getText().toString(), editFoodQuantity.getText().toString(), editUserName.getText().toString()
+        SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
+        String user_name = prefs.getString("name", "User");
+
+        FoodPost post = new FoodPost(editFoodType.getText().toString(), editFoodQuantity.getText().toString(), user_name
                 , userID, editUserLocation.getText().toString(), editUserContact.getText().toString(), editFoodDescription.getText().toString()
                 , al_image_encoded, refKey);
 
@@ -157,7 +161,6 @@ public class UploadActivity extends AppCompatActivity {
         post_btn = (Button) findViewById(R.id.button_post);
         editFoodType = (EditText) findViewById(R.id.foodTypeText);
         editFoodQuantity = (EditText) findViewById(R.id.foodQuantity);
-        editUserName = (EditText) findViewById(R.id.senderName);
         editUserContact = (EditText) findViewById(R.id.senderContact);
         editUserLocation = (EditText) findViewById(R.id.senderLocation);
         editFoodDescription = (EditText) findViewById(R.id.foodDescription);

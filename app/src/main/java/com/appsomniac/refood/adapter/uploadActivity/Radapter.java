@@ -44,11 +44,9 @@ public class Radapter extends RecyclerView.Adapter<RviewHolder> {
         if(uploadORsingleview.equals("upload")) {
 
             String Imag1 = image_uris.get(position);
-            //holder.iv.setImageURI(Uri.parse(Imag1));
-
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.placeholder(R.drawable.ic_online_courses_24dp);
-            requestOptions.error(R.drawable.ic_online_courses_24dp);
+            requestOptions.placeholder(R.color.colorPrimary);
+            requestOptions.error(R.color.colorPrimary);
 
             Glide.with(context).load(Imag1)
                     .apply(requestOptions).thumbnail(0.5f).into(holder.media_poster);
