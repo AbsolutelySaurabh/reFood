@@ -6,6 +6,9 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -13,6 +16,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -48,7 +52,6 @@ public class FirebaseNotificationService extends Service {
         firebaseAuth = FirebaseAuth.getInstance();
 
         Toast.makeText(this, "Service created", Toast.LENGTH_LONG).show();
-
         setupNotificationListener();
     }
 
@@ -76,11 +79,8 @@ public class FirebaseNotificationService extends Service {
 
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
 
-//                    FoodPost posts = dataSnapshot1.getValue(FoodPost.class);
+                    FoodPost posts = dataSnapshot1.getValue(FoodPost.class);
                     showNotification(context,"Saurabh's Dummy Notification",dataSnapshot.getKey());
-
-                    Toast.makeText(getApplicationContext(), "Show notification called", Toast.LENGTH_LONG).show();
-
 
                 }
             }
@@ -117,50 +117,73 @@ public class FirebaseNotificationService extends Service {
     }
 
 
-
-
     private void showNotification(Context context, String notification, String notification_key){
-        flagNotificationAsSent(notification_key);
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("dummy")
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setContentText(Html.fromHtml("dummy"
-                ))
-                .setAutoCancel(true);
+        Resources resources = getApplicationContext().getResources();
+        Bitmap largeIcon = BitmapFactory.decodeResource(resources,
+                R.drawable.exam_1);
 
-        Intent backIntent = new Intent(context, MainActivity.class);
-        backIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getApplicationContext())
+                        .setColor(resources.getColor(R.color.colorPrimary))
+                        .setSmallIcon(R.drawable.exam_1)
+                        .setLargeIcon(largeIcon)
+                        .setContentTitle("title")
+                        .setContentText("description");
 
-        Intent intent = new Intent(context, MainActivity.class);
-
-        /*  Use the notification type to switch activity to stack on the main activity*/
-        intent = new Intent(context, MainActivity.class);
-
-
-
-        final PendingIntent pendingIntent = PendingIntent.getActivities(context, 900,
-                new Intent[] {backIntent}, PendingIntent.FLAG_ONE_SHOT);
-
-
+        Intent resultIntent = new Intent(context, MainActivity.class);
+        // The stack builder object will contain an artificial back stack for the
+        // started Activity.
+        // This ensures that navigating backward from the Activity leads out of
+        // your application to the Home screen.
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        stackBuilder.addParentStack(MainActivity.class);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
 
-        mBuilder.setContentIntent(pendingIntent);
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(1001, mBuilder.build());
 
 
-        NotificationManager mNotificationManager =  (NotificationManager)context. getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build());
+
+
+//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+//                .setSmallIcon(R.mipmap.ic_launcher)
+//                .setContentTitle("dummy")
+//                .setDefaults(NotificationCompat.DEFAULT_ALL)
+//                .setContentText(Html.fromHtml("dummy"
+//                ))
+//                .setAutoCancel(true);
+//
+//        Intent backIntent = new Intent(context, MainActivity.class);
+//        backIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//        Intent intent = new Intent(context, MainActivity.class);
+//
+//        /*  Use the notification type to switch activity to stack on the main activity*/
+//        intent = new Intent(context, MainActivity.class);
+//
+//
+//
+//        final PendingIntent pendingIntent = PendingIntent.getActivities(context, 900,
+//                new Intent[] {backIntent}, PendingIntent.FLAG_ONE_SHOT);
+//
+//
+//        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+//        stackBuilder.addParentStack(MainActivity.class);
+//
+//        mBuilder.setContentIntent(pendingIntent);
+//
+//
+//        NotificationManager mNotificationManager =  (NotificationManager)context. getSystemService(Context.NOTIFICATION_SERVICE);
+//        mNotificationManager.notify(1, mBuilder.build());
 
     }
-
-    private void flagNotificationAsSent(String notification_key) {
-        mDatabase.getReference().child("notifications")
-                .child(firebaseAuth.getCurrentUser().getUid())
-                .child(notification_key)
-                .child("status")
-                .setValue(1);
-    }
-
 }

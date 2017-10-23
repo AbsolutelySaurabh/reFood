@@ -79,6 +79,8 @@
 
     <string name="food_type_prompt" />Choose Food Type/string>
 
+    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+
     <string-array name="food_type_array">
         <item>Snacks</item>
         <item>Meal</item>

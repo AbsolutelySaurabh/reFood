@@ -27,7 +27,6 @@ import com.appsomniac.refood.activity.LoginActivity;
 import com.appsomniac.refood.fragments.HomeFragment;
 import com.appsomniac.refood.fragments.ProfileFragment;
 import com.appsomniac.refood.service.FirebaseNotificationService;
-import com.appsomniac.refood.service.UpdaterServiceManager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
