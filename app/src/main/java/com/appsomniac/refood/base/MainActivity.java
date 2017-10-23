@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         } else {
             mUsername = mFirebaseUser.getDisplayName();
-            startService(new Intent(getBaseContext(), FirebaseNotificationService.class));
+            //startService(new Intent(getBaseContext(), FirebaseNotificationService.class));
         }
 
         // initialize the views

@@ -151,39 +151,5 @@ public class FirebaseNotificationService extends Service {
 
         mNotificationManager.notify(1001, mBuilder.build());
 
-
-
-
-//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-//                .setSmallIcon(R.mipmap.ic_launcher)
-//                .setContentTitle("dummy")
-//                .setDefaults(NotificationCompat.DEFAULT_ALL)
-//                .setContentText(Html.fromHtml("dummy"
-//                ))
-//                .setAutoCancel(true);
-//
-//        Intent backIntent = new Intent(context, MainActivity.class);
-//        backIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//        Intent intent = new Intent(context, MainActivity.class);
-//
-//        /*  Use the notification type to switch activity to stack on the main activity*/
-//        intent = new Intent(context, MainActivity.class);
-//
-//
-//
-//        final PendingIntent pendingIntent = PendingIntent.getActivities(context, 900,
-//                new Intent[] {backIntent}, PendingIntent.FLAG_ONE_SHOT);
-//
-//
-//        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-//        stackBuilder.addParentStack(MainActivity.class);
-//
-//        mBuilder.setContentIntent(pendingIntent);
-//
-//
-//        NotificationManager mNotificationManager =  (NotificationManager)context. getSystemService(Context.NOTIFICATION_SERVICE);
-//        mNotificationManager.notify(1, mBuilder.build());
-
     }
 }

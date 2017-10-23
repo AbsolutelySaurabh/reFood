@@ -7,11 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.appsomniac.refood.R;
 import com.appsomniac.refood.other.Config;
+import com.appsomniac.refood.other.Utils;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
@@ -20,7 +22,11 @@ import com.google.android.youtube.player.YouTubeThumbnailView;
 public class YoutubePlayerAdapter extends RecyclerView.Adapter<YoutubePlayerAdapter.VideoInfoHolder> {
 
     //these ids are the unique id for each video
-    String[] VideoID = {"P3mAtvs5Elc", "nCgQDjiotG0", "P3mAtvs5Elc"};
+    String[] al_HowToStopFoodWastageVideoID = {"4JDGFNoY-rQ", "Pmr5NbFyL-E", "bfpcFy0xA6A", "C_ZloyMe5Pk", "Z0BGa8zDFlI", "qQQMygivn0g"
+    , "8fsCF9tyitM", "-6ZY49DDvq4", "s1LCzikk8Cw", "Kr_DGf77OhM", "tU1m6EWMZaY", "SzPA1G5zr9Q" };
+
+    String[] al_HowToStopWastageVideoID = {"Kr_DGf77OhM", "4JDGFNoY-rQ", "wrTCeLfVkVU"};
+
     Context ctx;
 
     public YoutubePlayerAdapter(Context context) {
@@ -54,8 +60,10 @@ public class YoutubePlayerAdapter extends RecyclerView.Adapter<YoutubePlayerAdap
             @Override
             public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader youTubeThumbnailLoader) {
 
-                youTubeThumbnailLoader.setVideo(VideoID[position]);
+
+                youTubeThumbnailLoader.setVideo(al_HowToStopFoodWastageVideoID[position]);
                 youTubeThumbnailLoader.setOnThumbnailLoadedListener(onThumbnailLoadedListener);
+
             }
 
             @Override
@@ -63,11 +71,13 @@ public class YoutubePlayerAdapter extends RecyclerView.Adapter<YoutubePlayerAdap
                 //write something for failure
             }
         });
+
+        runEnterAnimation(holder.itemView);
     }
 
     @Override
     public int getItemCount() {
-        return VideoID.length;
+        return al_HowToStopFoodWastageVideoID.length;
     }
 
     public class VideoInfoHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -87,8 +97,18 @@ public class YoutubePlayerAdapter extends RecyclerView.Adapter<YoutubePlayerAdap
         @Override
         public void onClick(View v) {
 
-            Intent intent = YouTubeStandalonePlayer.createVideoIntent((Activity) ctx, Config.DEVELOPER_KEY, VideoID[getLayoutPosition()]);
+            Intent intent = YouTubeStandalonePlayer.createVideoIntent((Activity) ctx, Config.DEVELOPER_KEY, al_HowToStopFoodWastageVideoID[getLayoutPosition()]);
             ctx.startActivity(intent);
         }
     }
+
+    private void runEnterAnimation(View view) {
+        view.setTranslationY(Utils.getScreenHeight(ctx));
+        view.animate()
+                .translationY(0)
+                .setInterpolator(new DecelerateInterpolator(3.f))
+                .setDuration(700)
+                .start();
+    }
+
 }

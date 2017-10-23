@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment {
 
         Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(new DashboardFragment(), "DashBoard");
-        adapter.addFragment(new ManagementFragment(), "Manage");
+        adapter.addFragment(new ManagementFragment(), "Management");
 //        adapter.addFragment(new PersonalFragment(), "Personal");
         viewPager.setAdapter(adapter);
     }

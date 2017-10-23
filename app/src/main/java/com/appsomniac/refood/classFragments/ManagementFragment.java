@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.appsomniac.refood.R;
 import com.appsomniac.refood.adapter.manage.YoutubePlayerAdapter;
+import com.google.android.youtube.player.YouTubePlayer;
 
 public class ManagementFragment extends Fragment {
 
@@ -25,12 +26,6 @@ public class ManagementFragment extends Fragment {
         manageFragment = inflater.inflate(R.layout.manage_layout, container, false);
 
         RecyclerView recyclerView=(RecyclerView)manageFragment.findViewById(R.id.manage_recycler_view);
-
-//        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-//        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        recyclerView.setLayoutManager(linearLayoutManager);
-//        RecyclerAdapter adapter=new RecyclerAdapter(RecyclerActivity.this);
-//        recyclerView.setAdapter(adapter);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
