@@ -46,7 +46,9 @@
             android:label="Upload Food"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.FullImageActivity" />
-        <activity android:name=".activity.SingleItemActivity" />
+        <activity
+            android:name=".activity.SingleItemActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".service.FirebaseNotificationService"

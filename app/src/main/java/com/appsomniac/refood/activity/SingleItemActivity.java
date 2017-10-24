@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,11 @@ public class SingleItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_item);
+
+        // Adding Toolbar to Main screen
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         position = getIntent().getIntExtra("position", 0);
         setBottomNavView();
@@ -128,5 +134,13 @@ public class SingleItemActivity extends AppCompatActivity {
 
         finish();
         super.onBackPressed();
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp(){
+
+        finish();
+        return true;
     }
 }
