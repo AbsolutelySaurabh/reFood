@@ -2,11 +2,6 @@ package com.appsomniac.refood.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-/**
- * Created by absolutelysaurabh on 20/10/17.
- */
-
 public class FoodPost{
 
     private String foodType;
@@ -17,7 +12,7 @@ public class FoodPost{
     private String contact;
     private String foodPostedByUserId;
     private ArrayList<String> al_imageEncoded;
-    //This refKey is needed for interaction with database like deletion of that particular post by the user.
+    //This refKey is needed for interaction with database like deletion of that particfoodQuantityular post by the user.
     private String refKey;
 
     public FoodPost(String foodType, String foodQunatity, String foodPostedByName, String foodPostedByUserId, String foodLocation,
@@ -32,48 +27,35 @@ public class FoodPost{
         this.foodPostedByUserId = foodPostedByUserId;
         this.al_imageEncoded = al_imageEncoded;
         this.refKey = refKey;
-
     }
-
     public FoodPost(){
         //empty constructor
     }
-
     public String getRefKey(){
         return refKey;
     }
-
     public String getFoodType(){
         return foodType;
     }
-
     public String getFoodPostedByName(){
         return foodPostedByName;
     }
-
     public String getFoodPostedByUserId(){
         return foodPostedByUserId;
     }
-
     public ArrayList<String> getAl_imageEncoded(){
         return al_imageEncoded;
     }
-
     public String getFoodDescription(){
         return foodDescription;
     }
-
     public String getFoodQunatity(){
         return foodQunatity;
     }
-
     public String getFoodLocation(){
         return foodLocation;
     }
-
     public String getContact(){
         return contact;
     }
-
-
 }

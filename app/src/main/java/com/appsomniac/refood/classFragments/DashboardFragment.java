@@ -68,7 +68,7 @@ public class DashboardFragment extends Fragment {
     private ArrayList<String> image_uris;
     private ArrayList<String> al_image_encoded;
 
-    private static final String IMAGE_DIRECTORY = "/demonuts";
+    private static final String IMAGE_DIRECTORY = "/reFood";
     private int GALLERY = 1, CAMERA = 2;
     private RecyclerView rv;
     String[] permissions = new String[]{

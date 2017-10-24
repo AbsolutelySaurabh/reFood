@@ -28,6 +28,8 @@ dependencies {
     compile files('libs/YouTubeAndroidPlayerApi.jar')
 
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
@@ -51,9 +53,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:11.0.4'
     compile 'com.facebook.rebound:rebound:0.3.8'
     compile 'jp.wasabeef:recyclerview-animators:2.2.7'
-
     testCompile 'junit:junit:4.12'
-
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

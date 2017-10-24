@@ -1,8 +1,5 @@
 package com.appsomniac.refood.model;
 
-/**
- * Created by absolutelysaurabh on 20/10/17.
- */
 public class User {
 
     private String name;

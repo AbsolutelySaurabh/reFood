@@ -4,29 +4,23 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.appsomniac.refood.R;
 import com.appsomniac.refood.adapter.uploadActivity.Radapter;
 import com.appsomniac.refood.base.MainActivity;
 import com.appsomniac.refood.classFragments.DashboardFragment;
 import com.appsomniac.refood.model.FoodPost;
+import com.google.android.gms.maps.model.Dash;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.roughike.bottombar.BottomBar;
 
 public class SingleItemActivity extends AppCompatActivity {
 
@@ -58,7 +52,29 @@ public class SingleItemActivity extends AppCompatActivity {
         my_recycler_view.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         my_recycler_view.setAdapter(adapter);
 
+        setItemValues();
 
+    }
+
+    public void setItemValues(){
+
+        TextView postedBy = (TextView) findViewById(R.id.postedBy_value);
+        postedBy.setText(DashboardFragment.all_posts.get(position).getFoodPostedByName());
+
+        TextView contact = (TextView) findViewById(R.id.contact_value);
+        contact.setText(DashboardFragment.all_posts.get(position).getContact());
+
+        TextView foodType = (TextView) findViewById(R.id.foodtype_value);
+        foodType.setText(DashboardFragment.all_posts.get(position).getFoodType());
+
+        TextView quantity = (TextView) findViewById(R.id.quantity_value);
+        quantity.setText(DashboardFragment.all_posts.get(position).getFoodQunatity());
+
+        TextView description = (TextView) findViewById(R.id.description_value);
+        description.setText(DashboardFragment.all_posts.get(position).getFoodDescription());
+
+        TextView address = (TextView) findViewById(R.id.address_value);
+        address.setText(DashboardFragment.all_posts.get(position).getFoodLocation());
     }
 
     public void setBottomNavView(){

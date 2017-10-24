@@ -110,5 +110,4 @@ public class YoutubePlayerAdapter extends RecyclerView.Adapter<YoutubePlayerAdap
                 .setDuration(700)
                 .start();
     }
-
 }

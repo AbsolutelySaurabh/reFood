@@ -55,8 +55,13 @@ public class DashboardRadapter extends RecyclerView.Adapter<DashboardRviewholder
     @Override
     public void onBindViewHolder(DashboardRviewholder holder, int position) {
 
-        //Bitmap image = decodeFromFirebaseBase64(all_posts.get(position).getAl_imageEncoded().get(0));
-        // holder.item_image.setImageBitmap(image);
+        Bitmap image = null;
+        try {
+            image = decodeFromFirebaseBase64(all_posts.get(position).getAl_imageEncoded().get(0));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        holder.item_image.setImageBitmap(image);
 
         byte[] imageByteArray = Base64.decode(all_posts.get(position).getAl_imageEncoded().get(0), Base64.DEFAULT);
 
@@ -66,7 +71,7 @@ public class DashboardRadapter extends RecyclerView.Adapter<DashboardRviewholder
 
         Glide.with(context).asBitmap().load(imageByteArray)
                 .apply(requestOptions).thumbnail(0.5f).into(holder.item_image);
-
+//
         String postedBy = all_posts.get(position).getFoodType();
         String contact = all_posts.get(position).getContact();
 

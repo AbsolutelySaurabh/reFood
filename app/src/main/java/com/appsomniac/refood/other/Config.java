@@ -1,9 +1,5 @@
 package com.appsomniac.refood.other;
 
-/**
- * Created by absolutelysaurabh on 22/9/17.
- */
-
 public class Config {
 
     public static String BASE_URL = "http://api.themoviedb.org/3/";
