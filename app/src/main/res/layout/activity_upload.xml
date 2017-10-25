@@ -82,7 +82,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Details:"
+            android:text="*Details:"
             android:textSize="12sp"
             android:layout_marginTop="12dp"
             android:textColor="@color/colorGreyText"

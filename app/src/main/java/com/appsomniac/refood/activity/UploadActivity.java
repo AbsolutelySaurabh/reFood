@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -100,17 +101,42 @@ public class UploadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(editFoodQuantity.getText().length()>=0 && editFoodType.getText().length()>=1 && editFoodDescription.getText().length()>=5
-                        && editUserLocation.getText().length()>=5 && editUserContact.getText().length()>=7){
+                if(editFoodQuantity.getText().length()>=0 && editFoodType.getText().length()>=1 && editUserLocation.getText().length()>=4
+                        && editUserContact.getText().length()>=7 && image_uris.size()>=2){
 
                     postToDatabase();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
 
                 }else {
-                    Toast.makeText(getApplicationContext(), "Complete Details first!", Toast.LENGTH_SHORT).show();
+
+                    if(image_uris.size()<2){
+                        Toast.makeText(getApplicationContext(), "Add atleast 2 photos of the food.", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Complete Details first!", Toast.LENGTH_SHORT).show();
+                    }
 
                 }
+            }
+        });
+
+        ImageView foodQuantityHint = (ImageView) findViewById(R.id.foodQuantityHint);
+        foodQuantityHint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(), "Eg: 1 bottle, 2 plates", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        ImageView foodDescriptionHint = (ImageView) findViewById(R.id.foodDescriptionHint);
+        foodDescriptionHint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(), "Eg: 1 bottle frooti available.", Toast.LENGTH_SHORT).show();
+
             }
         });
 
