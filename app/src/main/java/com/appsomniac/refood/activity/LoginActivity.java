@@ -185,6 +185,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.clearDefaultAccountAndReconnect();
         }
+
+        progressBar.setVisibility(View.VISIBLE);
+
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
@@ -225,6 +228,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     Toast.LENGTH_SHORT).show();
                         } else {
 
+                            progressBar.setVisibility(View.GONE);
                             checkUniqueUser(task.getResult());
 
                         }

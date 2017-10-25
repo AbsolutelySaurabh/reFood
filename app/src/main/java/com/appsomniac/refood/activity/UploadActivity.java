@@ -217,8 +217,11 @@ public class UploadActivity extends AppCompatActivity {
     private void showPictureDialog(){
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
         pictureDialog.setTitle("Select Action");
+//        String[] pictureDialogItems = {
+//                "Select photo from gallery",
+//                "Capture photo from camera" };
+
         String[] pictureDialogItems = {
-                "Select photo from gallery",
                 "Capture photo from camera" };
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener(){
@@ -226,9 +229,6 @@ public class UploadActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                choosePhotoFromGallary();
-                                break;
-                            case 1:
                                 takePhotoFromCamera();
                                 break;
                         }
@@ -301,7 +301,7 @@ public class UploadActivity extends AppCompatActivity {
                     new String[]{f.getPath()},
                     new String[]{"image/jpeg"}, null);
             fo.close();
-            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+//            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
 
             image_uris.add(f.getAbsolutePath());
             if(image_uris.size()>=4){

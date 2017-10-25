@@ -33,7 +33,7 @@
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/colorPrimaryDark" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +52,7 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/colorPrimaryDark" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@color/colorPrimaryDark"
-            android:text="@string/action_sign_in_short"
+            android:text="Sign Up"
             android:shadowColor="@color/colorPrimary"
             android:textColor="@android:color/white"
             android:textStyle="bold" />

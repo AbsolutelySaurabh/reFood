@@ -23,6 +23,7 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.appsomniac.refood.R;
@@ -138,7 +139,13 @@ public class DashboardFragment extends Fragment {
                     //This methos is for FADEin FADEout animation of each card
                     setAnimationAndAdapter();
 
-                }
+                }else
+                    if(all_posts.size()==0){
+
+                        RelativeLayout placeholder = dashboard_fragment.findViewById(R.id.empty_placeholder);
+                        progressBar.setVisibility(View.GONE);
+                        placeholder.setVisibility(View.VISIBLE);
+                    }
             }
 
             @Override
@@ -292,7 +299,7 @@ public class DashboardFragment extends Fragment {
             fo.close();
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
             image_uris.add(f.getAbsolutePath());
-            Toast.makeText(getContext(), "Absolute Path: "+ f.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "Absolute Path: "+ f.getAbsolutePath(), Toast.LENGTH_SHORT).show();
 
             // rd.notifyDataSetChanged();
             return f.getAbsolutePath();
