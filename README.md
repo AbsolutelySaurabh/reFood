@@ -1,12 +1,13 @@
 # reFood
-An OLX for food, built to promote food waste management built during the WFI hackathon conducted by CII.
+An OLX for food, built to promote food waste management built during the WFI hackathon conducted by CII and Food Ministry of India.
+
 #Under Development
 
 <h1 align="center">
      reFood
   <br>
 </h1>
-<h3 align="center">The one-stop solution to all king of stress.</h3>
+<h3 align="center">An app to prevent food wastage.</h3>
 <p align="center">
 
   <a href="https://drive.google.com/uc?export=download&id=1D8xx4FX4onx4rrjow4zWKnjMcFxV3pD8">
