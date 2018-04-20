@@ -1,19 +1,16 @@
-![screenshot](https://github.com/AbsolutelySaurabh/reFood/blob/master/screenshots/collage-2017-11-16.png)
+# reFood
+An OLX for food, built to promote food waste management built during the WFI hackathon conducted by CII.
+#Under Development
+
 <h1 align="center">
-    reFood
+     reFood
   <br>
 </h1>
-<h3 align="center">An android app promoting food-wastage management.</h3>
-<h6 align="center"><a href="https://drive.google.cm/uc?export=download&id=1D8xx4FX4onx4rrjow4zWKnjMcFxV3pD8"><img src="https://github.com/AbsolutelySaurabh/reFood/blob/master/icons/playstore-icon.png" width="200"></a></h6>
+<h3 align="center">The one-stop solution to all king of stress.</h3>
 <p align="center">
-  <a href="https://github.com/AbsolutelySaurabh/reFood#fork-destination-box">
-    . Contribute .
-  </a>
-  <a href="https://drive.google.cm/uc?export=download&id=1D8xx4FX4onx4rrjow4zWKnjMcFxV3pD8">
+
+  <a href="https://drive.google.com/uc?export=download&id=1D8xx4FX4onx4rrjow4zWKnjMcFxV3pD8">
     . Download .
-  </a>
-  <a href="https://www.youtube.com/watch?v=-wSzjN8s_R8&t=39s">
-    . Demo .
   </a>
 </p>
 <br>
@@ -21,11 +18,30 @@
 ## About reFood
 
 ```bash
-reFood is an android app promoting food-wastage management.
+
+reFood is an Olx for food, built to promote food wastage management.
+Features:
+1. Login/ Signup.
+2. Home feeds.
+3. CLick on the food to see the details.
+4. Call the owner.
+5. Food management tips/ videos.
+6. Get rewars in form of credits/ coins for your good work.
+7. Database is maintained on Firebase.
+8. A lot more to be added.
 
 ```
-
-
+  
+  
+## Download
+You can [download](https://drive.google.com/uc?export=download&id=1D8xx4FX4onx4rrjow4zWKnjMcFxV3pD8) latest installable version of reFood for Android.
+  
+## Screenshots  
+  <img  src="screenshots/a.png" width="290" height="470" >   <img src="screenshots/b.png" width="290" height="470">
+ <img src="screenshots/c.png" width="290" height="470">  <img src="screenshots/d.png" width="290" height="470">
+   <img src="screenshots/e.png" width="290" height="470">   <img src="screenshots/g.png" width="290" height="470">
+        
+  
 ## Development  
 Want to contribute? **:pencil:**  
   
@@ -50,7 +66,7 @@ If you'd like to request a new functionality, feel free to do so by opening an i
 
 ```bash
 
-Copyright 2017 reFood.
+Copyright 2017 Appsomniac.
 
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements. See the NOTICE file distributed with this work for
@@ -67,10 +83,13 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.  
   ```
+  [Youtube api]
+  [Firebase]
+  [Runtime permissions]
+  [Glide]
+
 ---
 
 > GitHub [@AbsolutelySaurabh](https://github.com/AbsolutelySaurabh) &nbsp;&middot;&nbsp;
-  
-  
-## Download
-You can [download](https://drive.google.com/uc?export=download&id=1D8xx4FX4onx4rrjow4zWKnjMcFxV3pD8) latest installable version of reFood for Android.
+> Youtube [@appsomniac](https://www.youtube.com/channel/UCHO9VuIlUZj8eoKi1cXMOyA
+
